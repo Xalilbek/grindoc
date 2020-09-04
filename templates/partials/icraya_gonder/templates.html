@@ -1,0 +1,83 @@
+
+<script type="text/x-underscore-template" id="kurator-id-select">
+	<div class="input-group" data-function="item">
+		<input name="kurator[]"
+			   class="form-control select"
+
+			   vezife="kurator" placeholder="İcraya nəzarət edən şəxs">
+		<%
+		if(isFirst){
+		%>
+		<div class="input-group-addon" data-function="action-add">
+			<i class="fa fa-plus"></i>
+		</div>
+		<% } else { %>
+
+		<a data-function="action-remove" href="javascript:;" class="input-group-addon delete-icon">
+			<i class="fa fa-minus"></i>
+		</a>
+		<% } %>
+	</div>
+</script>
+
+<script type="text/x-underscore-template" id="ishtirakchi-id-select">
+	<div class="input-group" data-function="item">
+		<input name="ishtirakchi[]"
+			   class="form-control select"
+
+			   vezife="ishtirakchi" placeholder="Həmicraçı">
+		<%
+		if(isFirst){
+		%>
+		<div class="input-group-addon" data-function="action-add">
+			<i class="fa fa-plus"></i>
+		</div>
+		<% } else { %>
+
+		<a data-function="action-remove" href="javascript:;" class="input-group-addon delete-icon">
+			<i class="fa fa-minus"></i>
+		</a>
+		<% } %>
+	</div>
+</script>
+
+<script type="text/x-underscore-template" id="mesul_shexs-id-select">
+	<div class="input-group" data-function="item">
+		<input name="mesul_shexs[]"
+			   class="form-control select"
+
+			   vezife="mesul_shexs" placeholder="Məsul şəxs">
+		<%
+		if(isFirst){
+		%>
+		<div class="input-group-addon" data-function="action-add">
+			<i class="fa fa-plus"></i>
+		</div>
+		<% } else { %>
+
+		<a data-function="action-remove" href="javascript:;" class="input-group-addon delete-icon">
+			<i class="fa fa-minus"></i>
+		</a>
+		<% } %>
+	</div>
+</script>
+<script type="text/x-underscore-template" id="melumat-id-select">
+	<div class="input-group" data-function="item">
+		<input name="melumat[]"
+			   class="form-control select"
+
+			   vezife="melumat" placeholder="Məlumatlandırılan şəxslər">
+		<%
+		if(isFirst){
+		%>
+		<div class="input-group-addon" data-function="action-add">
+			<i class="fa fa-plus"></i>
+		</div>
+		<% } else { %>
+
+		<a data-function="action-remove" href="javascript:;" class="input-group-addon delete-icon">
+			<i class="fa fa-minus"></i>
+		</a>
+		<% } %>
+	</div>
+</script>

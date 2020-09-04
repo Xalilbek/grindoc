@@ -1,0 +1,153 @@
+<script type="text/javascript" src="prodoc/settings.js"></script>
+<script>
+	function initIcrayaGonder(container) {
+		$( document ).ready(function() {
+			function showAbbrClose(el) {
+				if ($(el).find('[data-function=item]').length < 2) {
+					$(el).find(".select2-container .select2-choice abbr").css("display", "inline-block")
+					$(el).find(".select2-container .select2-choice abbr").on("click",function(){
+						$(this).css("display", "none")
+					})
+					$(el).find(".select").on("change",function(){
+						$(el).find(".select2-container .select2-choice abbr").css("display", "inline-block")
+					})
+				}
+			}
+
+			function hideAbbrClose(el) {
+				$(el).find(".select2-container .select2-choice abbr").css("display", "none")
+			}
+
+            function collectValues() {
+
+                var arr = [];
+                $('.whiteboard.icraya_gonder input[name].select').each(function () {
+                    var value =$(this).val();
+                    var myarr = value.split("_");
+                    if (myarr[0]+"_"+myarr[1]==value){
+                        value=myarr[0];
+                    }
+                    var uid = +value;
+                    if (uid) {
+                        arr.push(uid)
+                    }
+
+                });
+
+                return arr;
+            }
+
+			container.find(".kuratorShexs").multiple({
+				itemTemplateId: 'kurator-id-select',
+				initialItem: true,
+				prepend: true,
+				beforeAppend: function (item, e, extra) {
+
+					return CheckForEmptyInput(".kuratorShexs", "kurator") || extra.isFirst;
+				},
+				afterAppend: function (item) {
+					Component.Plugin.PluginManager.init(item);
+					var kurator = item.find('input[name="kurator[]"]');
+                    var sened_novu = '<?= $sened_novu ?>';
+					var axtarish = Component.Plugin.Plugin.select2AjaxPlugin.init.bind(Component.Plugin.Plugin.select2AjaxPlugin);
+					axtarish(kurator, {
+						allowClear: false,
+						getAjaxData: function (t) {
+							return {
+                                'ne': 'derkenar_icrachilari',
+                                'sened_tipi': 'kurator_shexs',
+                                'sened_novu': sened_novu,
+                                'extra_emekdash': collectValues()
+							}
+						}
+					});
+                    getMultiSelectValues("#kuratorInput")
+				}
+			});
+
+			container.find(".ishtirakchi").multiple({
+				itemTemplateId: 'ishtirakchi-id-select',
+				initialItem: true,
+				prepend: true,
+				beforeAppend: function (item, e, extra) {
+					return CheckForEmptyInput(".ishtirakchi", "ishtirakchi") || extra.isFirst;
+				},
+				afterAppend: function (item) {
+					var kurator = item.find('input[name="ishtirakchi[]"]');
+					var axtarish = Component.Plugin.Plugin.select2AjaxPlugin.init.bind(Component.Plugin.Plugin.select2AjaxPlugin);
+					var sened_novu = '<?= $sened_novu ?>';
+
+					axtarish(kurator, {
+						allowClear: false,
+						getAjaxData: function (t) {
+							return {
+                                'ne': 'ishtirakchi_shexsler',
+                                'sened_tipi': 'ishtirakchi_shexs',
+                                'sened_novu': sened_novu,
+                                'extra_emekdash': collectValues()
+							}
+						}
+					});
+                    getMultiSelectValues("#ishtirakchiInput")
+
+				}
+			});
+			container.find(".melumat").multiple({
+				itemTemplateId: 'melumat-id-select',
+				initialItem: true,
+				prepend: true,
+				beforeAppend: function (item, e, extra) {
+					return CheckForEmptyInput(".melumat", "melumat") || extra.isFirst;
+				},
+				afterAppend: function (item) {
+					var kurator = item.find('input[name="melumat[]"]');
+					var axtarish = Component.Plugin.Plugin.select2AjaxPlugin.init.bind(Component.Plugin.Plugin.select2AjaxPlugin);
+					var sened_novu = '<?= $sened_novu ?>';
+
+					axtarish(kurator, {
+						allowClear: false,
+						getAjaxData: function (t) {
+							return {
+                                'ne': 'melumat_shexsler',
+                                'sened_novu': sened_novu,
+                                'extra_emekdash': collectValues()
+							}
+						}
+					});
+                    getMultiSelectValues("#melumatInput")
+
+				}
+			});
+
+			container.find(".incoming-document").multiple({
+				itemTemplateId: 'mesul_shexs-id-select',
+				initialItem: true,
+				prepend: true,
+				beforeAppend: function (item, e, extra) {
+					return CheckForEmptyInput(".incoming-document", "mesul_shexs") || extra.isFirst;
+				},
+				afterAppend: function (item) {
+					Component.Plugin.PluginManager.init(item);
+					var kurator = item.find('input[name="mesul_shexs[]"]');
+					var axtarish = Component.Plugin.Plugin.select2AjaxPlugin.init.bind(Component.Plugin.Plugin.select2AjaxPlugin);
+                    var sened_novu = '<?= $sened_novu ?>';
+
+					axtarish(kurator, {
+						allowClear: false,
+						getAjaxData: function (t) {
+							return {
+                                'ne': 'derkenar_icrachilari',
+                                'sened_tipi': 'icraci_shexs',
+                                'sened_novu': sened_novu,
+                                'extra_emekdash': collectValues()
+							}
+						}
+					});
+                    getMultiSelectValues("#mesul_shexsInput")
+
+				}
+			});
+
+		})
+	}
+</script>
